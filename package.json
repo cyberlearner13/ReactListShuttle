@@ -5,6 +5,7 @@
   "author": "cyberlearner13 <arkadeepmukherjee2012@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "faker": "^4.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
