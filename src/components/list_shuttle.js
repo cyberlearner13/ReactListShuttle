@@ -8,6 +8,7 @@ export default class ListShuttle extends Component{
         super();
         this.state = {
             originalList : ["Taiwan", "Saudi Arabia", "Egypt", "Australia", "Dominica", "Kazakhstan", "Peru", "Uganda", "Zimbabwe", "Cambodia", "Honduras", "Japan", "Vietnam", "Western Sahara", "Guinea", "Laos", "Barbados", "Mexico", "New Zealand", "India"],
+            selectedList: [],
             countryToAdd: '',
             countryToRemove: '',
             selectedToAdd:false,
@@ -15,7 +16,13 @@ export default class ListShuttle extends Component{
         }
     }
     add(){
-        alert('add');
+      let arr = this.state.selectedList;
+      if(this.state.countryToAdd.length > 0){
+          arr.push(this.state.countryToAdd);
+      }
+      this.setState({
+          selectedList : arr
+      })
     }
 
     addAll(){
@@ -32,8 +39,7 @@ export default class ListShuttle extends Component{
             selectedToAdd: !this.state.selectedToAdd,
             countryToAdd: value
         })
-        let node = ReactDOM.findDOMNode(this.refs[index]);
-        node.classList.add('list');
+        
     }
     render(){
         console.log(this.state.countryToAdd);
@@ -81,7 +87,15 @@ export default class ListShuttle extends Component{
                         </button>
                     </div>
                 </div>
-                <div className="col s3" style={style.listBox}></div>
+                <div className="col s3" style={style.listBox}>
+                    {
+                        this.state.selectedList.map((val,ind) =>{
+                            return (
+                                <div key={ind}>{val}</div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         );
     }
